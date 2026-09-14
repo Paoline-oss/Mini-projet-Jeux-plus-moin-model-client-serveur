@@ -1,0 +1,68 @@
+\documentclass[12pt,a4paper]{article}
+
+% Encodage et langue
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+
+% Mise en page
+\usepackage[a4paper, margin=2.5cm]{geometry}
+
+% Mathématiques et figures
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+% Liens cliquables
+\usepackage[hidelinks]{hyperref}
+
+% En-têtes et pieds de page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Rapport du modéle client serveur du jeux Plus ou Moin}
+\fancyhead[R]{BOUVY Paoline}
+\fancyfoot[C]{\thepage}
+
+% Informations du document
+\title{\textbf{Rapport du modéle client servuer du jeux "Plus ou Moin"}}
+\author{BOUVY Paoline}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+Votre texte commence ici.
+\section{Objectif}
+Ce projet à pour objectif de montré le fonctionnement du model client - serveur dans le bute pédagogique, l'idée est de mettre en place une activité ou l'ordianteur enseignant est le serveur et les ordianteurs éléves sont des clients. Par conséquent les éléves peuvent obeserver qu'il n'ont pas le code du jeux mais ils peuvent jouer mais également 
+ils ont la possibilité de remarquer de maniére concréte les différentes requêtes envoyés au serveurs et ses réponses. 
+
+\section{Technologie utilisées}
+Pour ce projet j'ai utilisées Python car ses languages qui est utilisé dans l'enseignment aujourd'hui dans les lycées. Pour mettre en place une communication en TCP sur un même réseau j'ai utilisé la bibliothéque socket de Python. 
+Ensuite pour mettre en place le jeux, j'ai utilisé la bibliothéque random pour importer randint, pour avoir un nombre aléatoire pour chaque partie différentes. 
+
+\section{Partie serveur}
+\subsection{Connection avec les clients}
+Tout d'abord, pour la partie connection entre client et serveur, j'ai initialiser un socket, puis je le lie à l'adresse IP et au port choisi, ensuite j'attends qu'un joueur se connecte avec socket.accept() et le serveur atten les réponses avec socket.recv().  Mais comme ces méthodes sont des appels bloquants, et que je voulais avoir la possibilitée d'éteindre le serveur proprement (avec un Ctrl+C dans le terminal), j'ai mit en place un timeout avec une constance pour définir le temps d'attentes du serveur. Ensuite j'ai mit en palce des bloc try - except pour gérer les différentes, comme les erreurs du timeot dépassé, mais également si le client se déconnecte, ou si j'éteins le serveur proprement. Avec cette méthode le code ne se bloque est donc le serveur reste opérationnel pour différents client. 
+
+\subsection{Codage du jeux :}
+\subsubsection{Vérification de la réponse client}
+Pour la partie jeux j'ai fait une fonction, d'abord j'ai initialiser le nombre secret avec la fonction randint(), puis une variable qui compte le nombre d'essais et un booléen pour savoir s'il faut continuer ou non.  Donc la boucle du jeux dépend de la valeur de la variabe booleén. Comme précédament, j'ai mit en place un bloc try except pour le timeout pour pouvoir ferme le serveur proprement s'il a un délais trop long de la part du client, mais aussi si il feme la connection ou s'il y a une erreur quelconque. 
+Premiérement le serveur attend la proposition du client, la variable essais est incrementer, plus la proposition va être tester si il corresponds au critére, d'abord je vérifie si ce n'est pas un cacactére variable.isdigit(), ensuite je force la variable proposition a passé en eniter si l'utilisateur aurait rentré un réel, et pour finr je vérifie s'il la proposation et entre le borne du jeux. Si la réponse de l'utilisateur ne passe pas les testes, l'utilisateur a utilisé un essais et peut redonner une proposition. 
+
+\subsubsection{Savoir si le client à gagner}
+Pour savoir si la proposition du client correspond au nombre mystére, cette derniére est testé avec de bloc if elif else. Popur chaque cas le client recevera une indication comme "plus grand" ou "plus petit" et il pourra redonner une proposition, et la variable essais sur incrémenté de 1. Mais si il a gagner, le booléen passe à false et donc il sortira du jeux. 
+
+\section{Testes}
+
+
+\section{Axe d'Amélioration}
+
+\end{document}
