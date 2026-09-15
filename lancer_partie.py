@@ -15,26 +15,26 @@ def lancer_partie(connexion):
     try:
         while continuer:
                         try:
-                            connexion.send(str(continuer).encode(encoding = ENCO))
                             connexion.send(f"Faite une proposition entre 1 et 10 non réel".encode(encoding=ENCO))
-                            time.sleep(TIME_L)
+                            #time.sleep(TIME_L)
                             print("Attente de la proposition du joueur")
-                            proposition = connexion.recv(1024).decode(ENCO)  #Attente de la réponse du client 
-                            connexion.settimeout(TIME)
+                            proposition = (connexion.recv(1024).decode(ENCO))  #Attente de la réponse du client 
+                            #connexion.settimeout(TIME)
                             essais += 1  #Incrémentation des essais du client
                             print(f"Client -----> La proposition donnée est {(proposition)}, essais numéro {essais}" )
 
                             #Vérification de la proposition du client 
                             if not proposition.isdigit(): #Si il n'y pas des caractéres autres que des nombres 
                                 connexion.send("Entrer un nombre valide entre 1 et 10".encode(ENCO)).strip()
-                                time.sleep(TIME_L)
+                                #time.sleep(TIME_L)
                                 continue
         
                             proposition = int(proposition)  #Passage de la proposition obligatoire en entier si le client aurait mit des décimaux 
-        
+                            connexion.send(proposition.encode(encoding = ENCO))
+
                             if proposition < 1 or proposition > 10:
                                 connexion.send("Le nombre doit être 1 et 10".encode(encoding=ENCO)) #Envoi du message à l'utilisateur 
-                                time.sleep(TIME_L)
+                                #time.sleep(TIME_L)
                                 continue
         
                             if int(proposition) < nb_secret:

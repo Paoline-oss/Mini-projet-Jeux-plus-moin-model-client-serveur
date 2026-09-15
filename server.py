@@ -9,7 +9,8 @@ from lancer_partie import lancer_partie
 #Initialisation du socket
 connecteur_reseau = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 connecteur_reseau.settimeout(TIME)  #création du timeout socket
-connecteur_reseau.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+#connecteur_reseau.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+
 
 try:
     #Liaison du socket
@@ -33,9 +34,7 @@ try:
                     if reponse == "T":
                         correcte = False
                         connexion.send(f"Lancement du jeux".encode(encoding=ENCO))
-                        #connexion.send(str(correcte).encode(encoding = ENCO))
-                        #print(correcte)
-                        #lancer_partie(connexion)  #Fonction pour lancer la partie de PLUS ou MOIN
+                        lancer_partie(connexion)  #Fonction pour lancer la partie de PLUS ou MOIN
                     elif reponse == "F":
                         correcte = False
                         connexion.send("Fermeture de la connexion".encode(encoding=ENCO))
@@ -65,11 +64,15 @@ try:
         except ConnectionResetError:
             print("Le client a fermé la connexion de maniére inattendue")
 
+        except WindowsError as w:
+            print(f"{w}")
+
 #EXCEPTION s'il il ya un Ctrl+C dans le terminal
 except KeyboardInterrupt:
     print("\nArrêt du serveur ...")
     connecteur_reseau.close()
     print("Serveur arrêté proprement")
+
 
 #EXCEPTION s'il y a une erreur quelconque avec le serveur
 except Exception as e:

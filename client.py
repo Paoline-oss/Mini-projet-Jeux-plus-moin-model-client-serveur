@@ -2,8 +2,10 @@ import sys, socket
 from CONSTANTE import*
 
 connexion=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 #connexion.settimeout(TIME)  #création du timeout socket
-connexion.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+#connexion.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
 
 try:
     connexion.connect((HOST,PORT))
@@ -15,8 +17,6 @@ try:
         print("Entrez la réponse")
         reponse = input()
         connexion.send(reponse.encode(encoding = ENCO)) #Envoit de la réponse du client
-        print(connexion.recv(1034).decode(ENCO)) #print(Lancement du jeux)
-
         if reponse == "T":
             continuer = True
             correcte = False
@@ -24,7 +24,6 @@ try:
         elif reponse == "F" :
             continuer = False
             correcte = False
-            #print(continuer)
             print(connexion.recv(1024).decode(ENCO))
             print(f"Fermeture de la connexion coté client")
             connexion.shutdown(socket.SHUT_WR)
@@ -33,13 +32,31 @@ try:
         else : 
             print(connexion.recv(1024).decode(ENCO))
             continuer = False
+        try:
+            while continuer :
+                print(connexion.recv(1024).decode(ENCO)) #print("Faite proposition ...")
+                proposition = str(input())
+                connexion.send(str(proposition).encode(encoding = ENCO))
 
-        while continuer :
-            print(connexion.recv(1024).decode(ENCO)) #print("Faite proposition ...")
-            proposition = input()
-            proposition = connexion.recv(1024).decode(ENCO)
+                if not proposition.isdigit():
+                    print(connexion.recv(1024).decode(ENCO))
+                    continue
 
-            message_jeux = connexion.recv(1024).decode(ENCO)
+                proposition = connexion.recv(1024).decode(ENCO)
+
+                if proposition < 1 or proposition > 10: 
+                    print(connexion.recv(1024).decode(ENCO))
+                    continue
+
+                print(connexion.recv(1024).decode(ENCO))
+
+        except ValueError:
+            print(connexion.recv(1024).decode(ENCO))
+
+        except socket.timeout:
+            print("Timeout atteint : aucune réponse de la part du joueur")
+            print("Reprise de l'attente d'une réponse")
+
 
 
 except ConnectionResetError:
