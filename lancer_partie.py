@@ -12,43 +12,49 @@ def lancer_partie(connexion):
     essais = 0
     continuer = True
     print(f"\nLe nombre secret : {nb_secret} ")
+    reponse = ""
     try:
         while continuer:
                         try:
-                            connexion.send(f"Faite une proposition entre 1 et 10 non réel".encode(encoding=ENCO))
+
+                            connexion.send(f"{reponse}\nFaite une proposition entre 1 et 10 non réel".encode(encoding=ENCO))
                             #time.sleep(TIME_L)
                             print("Attente de la proposition du joueur")
-                            proposition = (connexion.recv(1024).decode(ENCO))  #Attente de la réponse du client 
+                            proposition = (connexion.recv(1024).decode(ENCO)).strip() #Attente de la réponse du client 
                             #connexion.settimeout(TIME)
                             essais += 1  #Incrémentation des essais du client
                             print(f"Client -----> La proposition donnée est {(proposition)}, essais numéro {essais}" )
 
                             #Vérification de la proposition du client 
                             if not proposition.isdigit(): #Si il n'y pas des caractéres autres que des nombres 
-                                connexion.send("Entrer un nombre valide entre 1 et 10".encode(ENCO)).strip()
+                                connexion.send("Entrer un nombre valide entre 1 et 10".encode(ENCO))
                                 #time.sleep(TIME_L)
                                 continue
         
                             proposition = int(proposition)  #Passage de la proposition obligatoire en entier si le client aurait mit des décimaux 
-                            connexion.send(proposition.encode(encoding = ENCO))
+                            
 
                             if proposition < 1 or proposition > 10:
-                                connexion.send("Le nombre doit être 1 et 10".encode(encoding=ENCO)) #Envoi du message à l'utilisateur 
+                                reponce ="Le nombre doit être 1 et 10" #Envoi du message à l'utilisateur 
                                 #time.sleep(TIME_L)
                                 continue
+                                
         
                             if int(proposition) < nb_secret:
-                                connexion.send("PLUS GRAND".encode(encoding=ENCO))
-                                time.sleep(TIME_L)
+                                reponse = "PLUS GRAND"
+                                
+                                #time.sleep(TIME_L)
                             elif int(proposition) > nb_secret:
-                                connexion.send("PLUS PETIT".encode(encoding=ENCO))
-                                time.sleep(TIME_L)
+                                reponse ="PLUS PETIT"
+                                
+                                #time.sleep(TIME_L)
                             else:
                                 continuer = False
                                 message_jeux = "Le nombre {} a été trouvé en {} tentative" .format(nb_secret, essais)
                                 connexion.send(message_jeux.encode(encoding=ENCO))
                                 return
-                            time.sleep(TIME_L)
+                            #time.sleep(TIME_L)
+                            
 
                         #EXCEPTION si le timeout est dépassé
                         except socket.timeout:

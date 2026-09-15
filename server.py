@@ -64,7 +64,7 @@ try:
         except ConnectionResetError:
             print("Le client a fermé la connexion de maniére inattendue")
 
-        except WindowsError as w:
+        ##except WindowsError as w:
             print(f"{w}")
 
 #EXCEPTION s'il il ya un Ctrl+C dans le terminal

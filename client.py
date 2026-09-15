@@ -34,7 +34,8 @@ try:
             continuer = False
         try:
             while continuer :
-                print(connexion.recv(1024).decode(ENCO)) #print("Faite proposition ...")
+                message = connexion.recv(1024).decode(ENCO)
+                print(message) #print("Faite proposition ...")
                 proposition = str(input())
                 connexion.send(str(proposition).encode(encoding = ENCO))
 
@@ -42,13 +43,15 @@ try:
                     print(connexion.recv(1024).decode(ENCO))
                     continue
 
-                proposition = connexion.recv(1024).decode(ENCO)
-
-                if proposition < 1 or proposition > 10: 
-                    print(connexion.recv(1024).decode(ENCO))
+                if "compris entre" in message:
                     continue
 
-                print(connexion.recv(1024).decode(ENCO))
+                if "trouvé" in message:
+                    print(f"GAGNER\n")
+                    continuer = False
+                    break
+
+
 
         except ValueError:
             print(connexion.recv(1024).decode(ENCO))
