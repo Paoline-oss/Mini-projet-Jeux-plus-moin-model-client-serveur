@@ -28,29 +28,24 @@ try:
             while correcte:
                 message_serveur ="Vous étes connecté sur le serveur de JEU PLUS OU MOIN, j'ai choisi un nb entre 1 et 10.\n Voulez vous jouer <T> Oui o <F> Non"
                 connexion.send(message_serveur.encode(encoding=ENCO))
-                time.sleep(TIME_L)  #Envoit de message_serveur au client
                 reponse = connexion.recv(1024).decode(ENCO)
                 try:
                     if reponse == "T":
                         correcte = False
                         connexion.send(f"Lancement du jeux".encode(encoding=ENCO))
-                        time.sleep(TIME_L)
                         #connexion.send(str(correcte).encode(encoding = ENCO))
                         #print(correcte)
-                        lancer_partie(connexion)  #Fonction pour lancer la partie de PLUS ou MOIN
+                        #lancer_partie(connexion)  #Fonction pour lancer la partie de PLUS ou MOIN
                     elif reponse == "F":
                         correcte = False
                         connexion.send("Fermeture de la connexion".encode(encoding=ENCO))
-                        time.sleep(TIME_L)
                         print("Fermeture de la connexion")
-                        time.sleep(TIME_L)
                         #connexion.send(correcte.encode(encoding=ENCO))
                         connexion.shutdown(socket.SHUT_WR)
                         connexion.close()
                         print("Fermeture de connexion faite")
                     else:
                         connexion.send(f"Commande incorrecte".encode(encoding=ENCO))
-                        connexion.send(str(correcte).encode(encoding=ENCO))
                 except OSError as e:
                     print(f"Erreur lors de la fermeture")
                     try:
