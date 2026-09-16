@@ -1,8 +1,8 @@
 import sys, socket, os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utilitaire.CONSTANTE import*
-from lancer_partie_client import*
+from utilitaire.CONSTANTE import HOST, PORT, ENCO, TIME
+from lancer_partie_client import lancer_partie_client
 
 #Création du socket
 connexion=socket.socket(socket.AF_INET, socket.SOCK_STREAM)

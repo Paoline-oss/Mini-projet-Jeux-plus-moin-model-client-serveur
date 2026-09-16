@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.10)  10 SEP 2026 12:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.9.10)  16 SEP 2026 16:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -523,24 +523,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
+Package rerunfilecheck Info: File `Rapport_Jeux_Plus_Moin.out' has not changed.
 
-
-Package rerunfilecheck Warning: File `Rapport_Jeux_Plus_Moin.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Rapport_Jeux_Plus_Moin.out':
-(rerunfilecheck)             Before: 1C4163BDCB019CB6DA274A7C480BD465;1192
-(rerunfilecheck)             After:  39D4F9466E6F766F0B4CD275E5A56D9C;1491.
+(rerunfilecheck)             Checksum: 24B43274303FBA514ECBBB9F710146C9;1916.
  ) 
 Here is how much of TeX's memory you used:
- 12585 strings out of 467871
- 200230 string characters out of 5417408
- 626925 words of memory out of 5000000
- 41298 multiletter control sequences out of 15000+600000
+ 12593 strings out of 467871
+ 200401 string characters out of 5417408
+ 627928 words of memory out of 5000000
+ 41304 multiletter control sequences out of 15000+600000
  641143 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,874b,472s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,594b,472s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Paoline\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ec
 bx1440.pk> <C:\Users\Paoline\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
 pi600\ecbx1200.pk> <C:\Users\Paoline\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
@@ -548,9 +542,9 @@ pen/ec/dpi600\ecbx1728.pk> <C:\Users\Paoline\AppData\Local\MiKTeX\fonts/pk/ljfo
 ur/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Paoline\AppData\Local\MiKTeX\fonts
 /pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\Paoline\AppData\Local\MiKT
 eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
-Output written on Rapport_Jeux_Plus_Moin.pdf (4 pages, 85747 bytes).
+Output written on Rapport_Jeux_Plus_Moin.pdf (4 pages, 96461 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 325 PDF objects out of 1000 (max. 8388607)
+ 18 named destinations out of 1000 (max. 500000)
+ 97 words of extra memory for PDF output out of 10000 (max. 10000000)
 
