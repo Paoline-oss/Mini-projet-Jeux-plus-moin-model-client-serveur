@@ -1,5 +1,0 @@
-HOST = "127.0.0.1"
-TIME = 15
-PORT = 54321
-TIME_L = 2
-ENCO = "UTF-8"
