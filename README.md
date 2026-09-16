@@ -24,7 +24,7 @@ Mise en place d’un modèle client-serveur à des fins pédagogiques
 ├── README.md <br>
 
 ## Installation
-Tous est disponible dans le wiki
+Tout est disponible dans le wiki
 
 ## Auteur
 Paoline Bouvy
